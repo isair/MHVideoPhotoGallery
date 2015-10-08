@@ -339,9 +339,12 @@
 
 -(void)updateTitleForIndex:(NSInteger)pageIndex{
     NSString *localizedString  = MHGalleryLocalizedString(@"imagedetail.title.current");
-    self.navigationItem.title = [NSString stringWithFormat:localizedString,@(pageIndex+1),@(self.numberOfGalleryItems)];
+    if (localizedString == (id)[NSNull null] || localizedString.length == 0 ) {
+      localizedString = @"Gallery";
+    }else{
+      self.navigationItem.title = [NSString stringWithFormat:localizedString,@(pageIndex+1),@(self.numberOfGalleryItems)];
+    }
 }
-
 
 -(void)pageViewController:(UIPageViewController *)pageViewController
        didFinishAnimating:(BOOL)finished
